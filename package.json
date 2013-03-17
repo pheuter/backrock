@@ -1,0 +1,11 @@
+{
+  "name": "backrock",
+  "version": "0.0.1",
+  "description": "A simple web framework for Meteor, based on Backbone",
+  "scripts": {
+    "build": "cake build"
+  },
+  "repository": "",
+  "author": "Mark Fayngersh",
+  "license": "BSD"
+}

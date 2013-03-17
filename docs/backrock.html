@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>backrock.coffee</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="public/stylesheets/normalize.css" />
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="page">
+
+      <div class="header">
+        
+          <h1>backrock.coffee</h1>
+        
+
+        
+      </div>
+
+      
+        
+        <pre><code>Backrock 0.0.1
+
+(c) 2013 Mark Fayngersh
+Backrock may be freely distributed under the MIT license.
+For all details and documentation:
+http://github.com/pheuter/backrock</code></pre>
+<h2>Setup</h2>
+<p>Reference to global object.</p>
+
+        
+          <div class="highlight"><pre>root = <span class="keyword">this</span></pre></div>
+        
+      
+        
+        <p>Top-level namespace.</p>
+
+        
+          <div class="highlight"><pre><span class="keyword">if</span> exports?
+  Backrock = exports
+<span class="keyword">else</span>
+  Backrock = root.Backrock = {}</pre></div>
+        
+      
+        
+        <p>Current version of library.</p>
+
+        
+          <div class="highlight"><pre>Backrock.VERSION = <span class="string">'0.0.1'</span></pre></div>
+        
+      
+        
+        <h2>View</h2>
+<p>Manages the representation and behavior of a Meteor <strong>template</strong>.</p>
+
+        
+          <div class="highlight"><pre>Backrock.View = <span class="class"><span class="keyword">class</span> <span class="title">View</span></span></pre></div>
+        
+      
+        
+        <p>A View expects.</p>
+
+        
+          <div class="highlight"><pre>constructor: (options) -&gt;
+    {template} = options
+    <span class="property">@_template</span> = Template[template]
+
+    <span class="keyword">if</span> <span class="property">@_template</span>?
+      <span class="property">@_attachListeners</span>()
+      <span class="property">@_attachEvents</span>()
+      <span class="property">@_attachHelpers</span>()
+
+      <span class="property">@initialize</span>?(arguments[<span class="number">0</span>])
+    <span class="keyword">else</span>
+      <span class="keyword">throw</span> <span class="keyword">new</span> Error <span class="string">"Template '<span class="subst">#{name}</span>' does not exist!"</span>
+
+  _attachListeners: -&gt;
+    _<span class="keyword">this</span> = <span class="keyword">this</span>
+
+    <span class="property">@_template</span>.<span class="function"><span class="title">created</span></span> = -&gt;
+      _<span class="keyword">this</span>.created?(<span class="keyword">this</span>)
+
+    <span class="property">@_template</span>.<span class="function"><span class="title">rendered</span></span> = -&gt;
+      _<span class="keyword">this</span>.rendered?(<span class="keyword">this</span>)
+
+    <span class="property">@_template</span>.<span class="function"><span class="title">destroyed</span></span> = -&gt;
+      _<span class="keyword">this</span>.destroyed?(<span class="keyword">this</span>)
+
+  _attachEvents: -&gt;
+    events = {}
+    events[sel] = <span class="keyword">this</span>[func] <span class="keyword">for</span> sel, func <span class="keyword">of</span> <span class="property">@events</span>
+    <span class="property">@_template</span>.events = events
+
+  _attachHelpers: -&gt;
+    helpers = {}
+    helpers[name] = <span class="keyword">this</span>[func] <span class="keyword">for</span> name, func <span class="keyword">of</span> <span class="property">@helpers</span>
+    <span class="property">@_template</span>.helpers(helpers)</pre></div>
+        
+      
+      <div class="fleur">h</div>
+    </div>
+  </div>
+</body>
+</html>
